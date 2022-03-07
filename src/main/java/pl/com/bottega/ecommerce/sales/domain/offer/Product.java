@@ -5,14 +5,14 @@ import java.util.Date;
 public class Product {
 
 	private String id;
-	private String type;
 	private String name;
+	private String type;
 	private Date snapshotDate;
 
-	public Product(String id, String type, String name, Date snapshotDate) {
+	public Product(String id, String name, String type, Date snapshotDate) {
 		this.id = id;
-		this.type = type;
 		this.name = name;
+		this.type = type;
 		this.snapshotDate = snapshotDate;
 	}
 

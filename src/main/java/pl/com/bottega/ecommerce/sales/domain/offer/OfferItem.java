@@ -184,5 +184,4 @@ public class OfferItem {
 
         return acceptableDelta.compareTo(difference) > 0;
     }
-
 }

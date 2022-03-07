@@ -9,8 +9,8 @@ public class Offer {
 
     private List<OfferItem> unavailableItems = new ArrayList<OfferItem>();
 
-    public Offer(List<OfferItem> availabeItems, List<OfferItem> unavailableItems) {
-        this.availableItems = availabeItems;
+    public Offer(List<OfferItem> availableItems, List<OfferItem> unavailableItems) {
+        this.availableItems = availableItems;
         this.unavailableItems = unavailableItems;
     }
 

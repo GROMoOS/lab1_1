@@ -62,7 +62,7 @@ public class Money {
 		return result;
 	}
 
-	public boolean sameAs(Money other, double delta) {
+	public boolean sameAs(Money other) {
 		if (amount == null) {
 			if (other.amount != null)
 				return false;

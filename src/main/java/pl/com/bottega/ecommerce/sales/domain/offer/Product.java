@@ -111,7 +111,7 @@ public class Product {
 		if (money == null) {
 			if (other.money != null)
 				return false;
-		} else if (!money.sameAs(other.money, 0))
+		} else if (!money.sameAs(other.money))
 			return false;
 
 		if (id == null) {

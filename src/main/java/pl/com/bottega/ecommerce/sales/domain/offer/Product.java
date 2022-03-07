@@ -3,11 +3,11 @@ package pl.com.bottega.ecommerce.sales.domain.offer;
 import java.util.Date;
 
 public class Product {// product
-    private String id;
-    private Money price;
-    private String name;
-    private Date snapshotDate;
-    private String type;
+    private final String id;
+    private final Money price;
+    private final String name;
+    private final Date snapshotDate;
+    private final String type;
 
     public Product(String id, Money price, String name, Date snapshotDate,
                    String type) {

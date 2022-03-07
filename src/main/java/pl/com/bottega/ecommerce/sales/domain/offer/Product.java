@@ -12,9 +12,9 @@ public class Product {// product
         this.productId = productId;
     }
 
-    private Money price;
-    public Money getPrice() {return price;}
-    public void setPrice(Money price) {this.price = price;}
+    private Money productPrice;
+    public Money getProductPrice() {return productPrice;}
+    public void setProductPrice(Money price) {this.productPrice = price;}
 
     private String productName;
     public String getProductName() {

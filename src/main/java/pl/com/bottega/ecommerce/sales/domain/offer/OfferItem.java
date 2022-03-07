@@ -27,12 +27,12 @@ public class OfferItem {
 
     private BigDecimal discount;
 
-    public OfferItem(String productId, BigDecimal productPrice, String productName, Date productSnapshotDate,
+    public OfferItem(String productId, Money productPrice, String productName, Date productSnapshotDate,
             String productType, int quantity) {
         this(productId, productPrice, productName, productSnapshotDate, productType, quantity, null, null);
     }
 
-    public OfferItem(String productId, BigDecimal productPrice, String productName, Date productSnapshotDate,
+    public OfferItem(String productId, Money productPrice, String productName, Date productSnapshotDate,
             String productType, int quantity, BigDecimal discount, String discountCause) {
         this.product.setProductId(productId);
         this.product.setProductPrice(productPrice);
@@ -49,14 +49,14 @@ public class OfferItem {
             discountValue = discountValue.subtract(discount);
         }
 
-        this.money.setTotalCost(productPrice.multiply(new BigDecimal(quantity)).subtract(discountValue));
+        this.money.setTotalCost(productPrice.getTotalCost().multiply(new BigDecimal(quantity)).subtract(discountValue));
     }
 
     public String getProductId() {
         return product.getProductId();
     }
 
-    public BigDecimal getProductPrice() {
+    public Money getProductPrice() {
         return product.getProductPrice();
     }
 
@@ -164,7 +164,7 @@ public class OfferItem {
 
     /**
      *
-     * @param item
+     * @param other
      * @param delta
      *            acceptable percentage difference
      * @return

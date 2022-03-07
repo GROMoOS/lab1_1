@@ -6,7 +6,7 @@ import java.util.Date;
 public class Product {
     private String id;
 
-    private BigDecimal price;
+    private Money money;
 
     private String name;
 
@@ -16,7 +16,7 @@ public class Product {
 
     public Product(String productId, BigDecimal productPrice, String productName, Date productSnapshotDate, String productType) {
         this.id = productId;
-        this.price = productPrice;
+        this.money = new Money(productPrice);
         this.name = productName;
         this.snapshotDate = productSnapshotDate;
         this.type = productType;
@@ -27,7 +27,7 @@ public class Product {
     }
 
     public BigDecimal getPrice() {
-        return price;
+        return money.getAmount();
     }
 
     public String getName() {

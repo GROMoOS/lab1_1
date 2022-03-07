@@ -24,9 +24,7 @@ public class OfferItem {
 
     private int quantity;
 
-    private BigDecimal totalCost;
-
-    private String currency;
+    private Money money;
 
     // discount
     private String discountCause;
@@ -52,7 +50,7 @@ public class OfferItem {
             discountValue = discountValue.subtract(discount);
         }
 
-        this.totalCost = product.getPrice().multiply(new BigDecimal(quantity)).subtract(discountValue);
+        this.money = new Money(product.getPrice().multiply(new BigDecimal(quantity)).subtract(discountValue));
     }
 
 
@@ -61,11 +59,11 @@ public class OfferItem {
     }
 
     public BigDecimal getTotalCost() {
-        return totalCost;
+        return money.getAmount();
     }
 
     public String getTotalCostCurrency() {
-        return currency;
+        return money.getCurrency();
     }
 
     public BigDecimal getDiscount() {
@@ -90,7 +88,7 @@ public class OfferItem {
         result = prime * result + (product.getId() == null ? 0 : product.getId().hashCode());
         result = prime * result + (product.getType() == null ? 0 : product.getType().hashCode());
         result = prime * result + quantity;
-        result = prime * result + (totalCost == null ? 0 : totalCost.hashCode());
+        result = prime * result + (money.getAmount() == null ? 0 : money.getAmount().hashCode());
         return result;
     }
 
@@ -140,11 +138,11 @@ public class OfferItem {
         if (quantity != other.quantity) {
             return false;
         }
-        if (totalCost == null) {
-            if (other.totalCost != null) {
+        if (money.getAmount() == null) {
+            if (other.money.getAmount() != null) {
                 return false;
             }
-        } else if (!totalCost.equals(other.totalCost)) {
+        } else if (!money.getAmount().equals(other.money.getAmount())) {
             return false;
         }
         return true;
@@ -189,12 +187,12 @@ public class OfferItem {
 
         BigDecimal max;
         BigDecimal min;
-        if (totalCost.compareTo(other.totalCost) > 0) {
-            max = totalCost;
-            min = other.totalCost;
+        if (money.getAmount().compareTo(other.money.getAmount()) > 0) {
+            max = money.getAmount();
+            min = other.money.getAmount();
         } else {
-            max = other.totalCost;
-            min = totalCost;
+            max = other.money.getAmount();
+            min = money.getAmount();
         }
 
         BigDecimal difference = max.subtract(min);

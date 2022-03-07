@@ -12,13 +12,9 @@ public class Product {// product
         this.productId = productId;
     }
 
-    private BigDecimal productPrice;
-    public BigDecimal getProductPrice() {
-        return productPrice;
-    }
-    public void setProductPrice(BigDecimal productPrice) {
-        this.productPrice = productPrice;
-    }
+    private Money price;
+    public Money getPrice() {return price;}
+    public void setPrice(Money price) {this.price = price;}
 
     private String productName;
     public String getProductName() {

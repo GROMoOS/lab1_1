@@ -2,6 +2,7 @@ package pl.com.bottega.ecommerce.sales.domain.offer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Offer {
 
@@ -9,8 +10,8 @@ public class Offer {
 
     private List<OfferItem> unavailableItems = new ArrayList<OfferItem>();
 
-    public Offer(List<OfferItem> availabeItems, List<OfferItem> unavailableItems) {
-        this.availableItems = availabeItems;
+    public Offer(List<OfferItem> availableItems, List<OfferItem> unavailableItems) {
+        this.availableItems = availableItems;
         this.unavailableItems = unavailableItems;
     }
 
@@ -23,33 +24,22 @@ public class Offer {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + (availableItems == null ? 0 : availableItems.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Offer offer = (Offer) o;
+
+        if (!Objects.equals(availableItems, offer.availableItems))
+            return false;
+        return Objects.equals(unavailableItems, offer.unavailableItems);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        Offer other = (Offer) obj;
-        if (availableItems == null) {
-            if (other.availableItems != null) {
-                return false;
-            }
-        } else if (!availableItems.equals(other.availableItems)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        int result = availableItems != null ? availableItems.hashCode() : 0;
+        result = 31 * result + (unavailableItems != null ? unavailableItems.hashCode() : 0);
+        return result;
     }
 
     /**
@@ -65,7 +55,7 @@ public class Offer {
         }
 
         for (OfferItem item : availableItems) {
-            OfferItem sameItem = seenOffer.findItem(item.getProductId());
+            OfferItem sameItem = seenOffer.findItem(item.getProduct().getId());
             if (sameItem == null) {
                 return false;
             }
@@ -79,7 +69,7 @@ public class Offer {
 
     private OfferItem findItem(String productId) {
         for (OfferItem item : availableItems) {
-            if (item.getProductId().equals(productId)) {
+            if (item.getProduct().getId().equals(productId)) {
                 return item;
             }
         }

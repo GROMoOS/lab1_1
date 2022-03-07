@@ -92,10 +92,7 @@ public class OfferItem {
         final int prime = 31;
         int result = 1;
         result = prime * result + (discount == null ? 0 : discount.hashCode());
-        result = prime * result + (product.getProductName() == null ? 0 : product.getProductName().hashCode());
-        result = prime * result + (product.getMoney() == null ? 0 : product.getMoney().hashCode());
-        result = prime * result + (product.getProductId() == null ? 0 : product.getProductId().hashCode());
-        result = prime * result + (product.getProductType() == null ? 0 : product.getProductType().hashCode());
+        result = prime * result + (product == null ? 0 : product.hashCode());
         result = prime * result + quantity;
         result = prime * result + (totalCost == null ? 0 : totalCost.hashCode());
         return result;

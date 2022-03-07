@@ -25,7 +25,7 @@ public class OfferItem {
 
     private Product product;
 
-    private Money money;
+    private Money productPrice;
     // discount
     private String discountCause;
 
@@ -82,7 +82,7 @@ public class OfferItem {
         int result = 1;
         result = prime * result + (discount == null ? 0 : discount.hashCode());
         result = prime * result + (product.getProductName() == null ? 0 : product.getProductName().hashCode());
-        result = prime * result + (money.getProductPrice() == null ? 0 : money.getProductPrice() .hashCode());
+        result = prime * result + (money.getProductPrice() == null ? 0 : money.getProductPrice().hashCode());
         result = prime * result + (product.getProductId() == null ? 0 : product.getProductId().hashCode());
         result = prime * result + (product.getProductType() == null ? 0 : product.getProductType().hashCode());
         result = prime * result + quantity;
@@ -109,30 +109,9 @@ public class OfferItem {
         } else if (!discount.equals(other.discount)) {
             return false;
         }
-        if (product.getProductName() == null) {
-            if (other.product.getProductName() != null) {
-                return false;
-            }
-        } else if (!product.getProductName().equals(other.product.getProductName())) {
-            return false;
-        }
-        if (money.getProductPrice() == null) {
-            if (other.money.getProductPrice() != null) {
-                return false;
-            }
-        } else if (!money.getProductPrice().equals(other.money.getProductPrice())) {
-            return false;
-        }
-        if (product.getProductId() == null) {
-            if (other.product.getProductId() != null) {
-                return false;
-            }
-        } else if (!product.getProductId().equals(other.product.getProductId())) {
-            return false;
-        }
-        if (product.getProductType() != other.product.getProductType()) {
-            return false;
-        }
+        if(!product.equals(other.product)) return false;
+        if(!money.equals(other.money)) return false;
+
         if (quantity != other.quantity) {
             return false;
         }

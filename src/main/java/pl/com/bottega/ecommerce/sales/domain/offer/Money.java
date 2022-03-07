@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Money  {
-    protected BigDecimal productPrice;
+    private BigDecimal productPrice;
     private String currency;
 
     public Money(BigDecimal productPrice) {
@@ -21,7 +21,7 @@ public class Money  {
         return productPrice;
     }
 
-    public String getTotalCostCurrency() {
+    public String getCurrency() {
         return currency;
     }
 }

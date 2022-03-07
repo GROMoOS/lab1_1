@@ -1,18 +1,17 @@
 package pl.com.bottega.ecommerce.sales.domain.offer;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
 public class Product {
     private final String id;
     private final String name;
-    private final BigDecimal price;
+    private final Money price;
     private final Date snapshotDate;
     private final String type;
 
 
-    public Product(String id, String name, BigDecimal price, Date snapshotDate, String type) {
+    public Product(String id, String name, Money price, Date snapshotDate, String type) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -36,7 +35,7 @@ public class Product {
         return id;
     }
 
-    public BigDecimal getPrice() {
+    public Money getPrice() {
         return price;
     }
 

@@ -45,7 +45,7 @@ public class OfferItem {
             discountValue = discountValue.subtract(discount);
         }
 
-        this.totalCost.setAmount(product.getPrice().multiply(new BigDecimal(quantity)).subtract(discountValue));
+        this.totalCost.setAmount(product.getPrice().getAmount().multiply(new BigDecimal(quantity)).subtract(discountValue));
     }
 
     public BigDecimal getTotalCost() {
@@ -132,16 +132,8 @@ public class OfferItem {
             return false;
         }
 
-        BigDecimal max;
-        BigDecimal min;
-        if (totalCost.getAmount().compareTo(other.totalCost.getAmount()) > 0) {
-            max = totalCost.getAmount();
-            min = other.totalCost.getAmount();
-        } else {
-            max = other.totalCost.getAmount();
-            min = totalCost.getAmount();
-        }
-
+        BigDecimal max = totalCost.getAmount().max(other.totalCost.getAmount());
+        BigDecimal min = totalCost.getAmount().min(other.totalCost.getAmount());
         BigDecimal difference = max.subtract(min);
         BigDecimal acceptableDelta = max.multiply(BigDecimal.valueOf(delta / 100));
 

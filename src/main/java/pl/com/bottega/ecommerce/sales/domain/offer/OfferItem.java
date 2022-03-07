@@ -14,13 +14,14 @@ package pl.com.bottega.ecommerce.sales.domain.offer;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Objects;
 
 public class OfferItem {
 
     // product
     private String productId;
 
-    private BigDecimal productPrice;
+    private Money productPrice;
 
     private String productName;
 
@@ -30,21 +31,19 @@ public class OfferItem {
 
     private int quantity;
 
-    private BigDecimal totalCost;
-
-    private String currency;
+    private Money totalCost;
 
     // discount
     private String discountCause;
 
     private BigDecimal discount;
 
-    public OfferItem(String productId, BigDecimal productPrice, String productName, Date productSnapshotDate,
+    public OfferItem(String productId, Money productPrice, String productName, Date productSnapshotDate,
             String productType, int quantity) {
         this(productId, productPrice, productName, productSnapshotDate, productType, quantity, null, null);
     }
 
-    public OfferItem(String productId, BigDecimal productPrice, String productName, Date productSnapshotDate,
+    public OfferItem(String productId, Money productPrice, String productName, Date productSnapshotDate,
             String productType, int quantity, BigDecimal discount, String discountCause) {
         this.productId = productId;
         this.productPrice = productPrice;
@@ -61,14 +60,14 @@ public class OfferItem {
             discountValue = discountValue.subtract(discount);
         }
 
-        this.totalCost = productPrice.multiply(new BigDecimal(quantity)).subtract(discountValue);
+        this.totalCost = new Money(productPrice.getAmount().multiply(new BigDecimal(quantity)).subtract(discountValue), productPrice.getCurrency());
     }
 
     public String getProductId() {
         return productId;
     }
 
-    public BigDecimal getProductPrice() {
+    public Money getProductPrice() {
         return productPrice;
     }
 
@@ -84,12 +83,8 @@ public class OfferItem {
         return productType;
     }
 
-    public BigDecimal getTotalCost() {
+    public Money getTotalCost() {
         return totalCost;
-    }
-
-    public String getTotalCostCurrency() {
-        return currency;
     }
 
     public BigDecimal getDiscount() {
@@ -176,7 +171,7 @@ public class OfferItem {
 
     /**
      *
-     * @param item
+     * @param other
      * @param delta
      *            acceptable percentage difference
      * @return
@@ -203,7 +198,7 @@ public class OfferItem {
         } else if (!productId.equals(other.productId)) {
             return false;
         }
-        if (productType != other.productType) {
+        if (!Objects.equals(productType, other.productType)) {
             return false;
         }
 
@@ -213,12 +208,12 @@ public class OfferItem {
 
         BigDecimal max;
         BigDecimal min;
-        if (totalCost.compareTo(other.totalCost) > 0) {
-            max = totalCost;
-            min = other.totalCost;
+        if (totalCost.getAmount().compareTo(other.totalCost.getAmount()) > 0) {
+            max = totalCost.getAmount();
+            min = other.totalCost.getAmount();
         } else {
-            max = other.totalCost;
-            min = totalCost;
+            max = other.totalCost.getAmount();
+            min = totalCost.getAmount();
         }
 
         BigDecimal difference = max.subtract(min);

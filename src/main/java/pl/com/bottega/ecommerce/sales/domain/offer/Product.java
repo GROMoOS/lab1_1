@@ -8,14 +8,14 @@ public class Product {
 	private String name;
 	private String type;
 	private Date snapshotDate;
-	private Money money;
+	private Money price;
 
 	public Product(String id, String name, String type, Date snapshotDate, Money money) {
 		this.id = id;
 		this.name = name;
 		this.type = type;
 		this.snapshotDate = snapshotDate;
-		this.money = money;
+		this.price = money;
 	}
 
 	public String getId() {
@@ -50,12 +50,12 @@ public class Product {
 		this.snapshotDate = snapshotDate;
 	}
 
-	public Money getMoney() {
-		return money;
+	public Money getPrice() {
+		return price;
 	}
 
-	public void setMoney(Money money) {
-		this.money = money;
+	public void setPrice(Money price) {
+		this.price = price;
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class Product {
 		result = prime * result + (name == null ? 0 : name.hashCode());
 		result = prime * result + (type == null ? 0 : type.hashCode());
 		result = prime * result + (snapshotDate == null ? 0 : snapshotDate.hashCode());
-		result = prime * result + (money == null ? 0 : money.hashCode());
+		result = prime * result + (price == null ? 0 : price.hashCode());
 		return result;
 	}
 
@@ -108,10 +108,10 @@ public class Product {
 		} else if(!snapshotDate.equals(other.snapshotDate))
 			return false;
 
-		if ( money == null) {
-			if (other.money == null)
+		if ( price == null) {
+			if (other.price == null)
 				return false;
-		} else if(!money.equals(other.money))
+		} else if(!price.equals(other.price))
 			return false;
 
 		return true;
@@ -124,10 +124,10 @@ public class Product {
 		} else if (!name.equals(other.name))
 			return false;
 
-		if (money == null) {
-			if (other.money != null)
+		if (price == null) {
+			if (other.price != null)
 				return false;
-		} else if (!money.sameAs(other.money))
+		} else if (!price.sameAs(other.price))
 			return false;
 
 		if (id == null) {

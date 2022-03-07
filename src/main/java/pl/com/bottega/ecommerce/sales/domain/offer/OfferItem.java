@@ -56,7 +56,7 @@ public class OfferItem {
         return product.getId();
     }
 
-    public BigDecimal getProductPrice() { return product.getMoney().getAmount(); }
+    public BigDecimal getProductPrice() { return product.getPrice().getAmount(); }
 
     public String getProductName() {
         return product.getName();
@@ -73,7 +73,7 @@ public class OfferItem {
     }
 
     public String getTotalCostCurrency() {
-        return product.getMoney().getCurrency();
+        return product.getPrice().getCurrency();
     }
 
     public BigDecimal getDiscount() {

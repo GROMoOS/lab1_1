@@ -100,4 +100,32 @@ public class Product {
 
 		return true;
 	}
+
+	public boolean sameAs(Product other) {
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+
+		if (money == null) {
+			if (other.money != null)
+				return false;
+		} else if (!money.sameAs(other.money, 0))
+			return false;
+
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
+
+		return true;
+	}
 }

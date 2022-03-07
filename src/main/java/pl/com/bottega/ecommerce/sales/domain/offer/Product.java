@@ -57,4 +57,47 @@ public class Product {
 	public void setMoney(Money money) {
 		this.money = money;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (id == null ? 0 : id.hashCode());
+		result = prime * result + (name == null ? 0 : name.hashCode());
+		result = prime * result + (type == null ? 0 : type.hashCode());
+		result = prime * result + (snapshotDate == null ? 0 : snapshotDate.hashCode());
+		result = prime * result + (money == null ? 0 : money.hashCode());
+		return result;
+	}
+
+	@Override
+	public  boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+
+		if (obj == null)
+			return false;
+
+		if (getClass() != obj.getClass())
+			return false;
+
+		Product other = (Product) obj;
+
+		if(!id.equals(other.id))
+			return false;
+
+		if(!name.equals(other.name))
+			return false;
+
+		if(!type.equals(other.type))
+			return false;
+
+		if(!snapshotDate.equals(other.snapshotDate))
+			return false;
+
+		if(!money.equals(other.money))
+			return false;
+
+		return true;
+	}
 }

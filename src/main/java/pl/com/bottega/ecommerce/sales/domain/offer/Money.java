@@ -44,10 +44,16 @@ public class Money {
 
 		Money other = (Money) obj;
 
-		if(!amount.equals(other.amount))
+		if ( amount == null) {
+			if (other.amount == null)
+				return false;
+		} else if(!amount.equals(other.amount))
 			return false;
 
-		if(!currency.equals(other.currency))
+		if ( currency == null) {
+			if (other.currency == null)
+				return false;
+		} else if(!currency.equals(other.currency))
 			return false;
 
 		return true;

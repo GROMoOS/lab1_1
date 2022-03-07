@@ -13,7 +13,6 @@
 package pl.com.bottega.ecommerce.sales.domain.offer;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 public class OfferItem {
 
@@ -23,24 +22,20 @@ public class OfferItem {
 
     // product
     private final Product product;
-
-    private int quantity;
-
-    private BigDecimal totalCost;
-
-    private String currency;
+    private final Money totalCost;
 
     // discount
     private String discountCause;
-
     private BigDecimal discount;
+    private int quantity;
 
-    public OfferItem(Product product, int quantity) {
-        this(product, quantity, null, null);
+    public OfferItem(Product product, int quantity, Money totalCost) {
+        this(product, totalCost, quantity, null, null);
     }
 
-    public OfferItem(Product product, int quantity, BigDecimal discount, String discountCause) {
+    public OfferItem(Product product, Money totalCost, int quantity, BigDecimal discount, String discountCause) {
         this.product = product;
+        this.totalCost = totalCost;
         this.quantity = quantity;
         this.discount = discount;
         this.discountCause = discountCause;
@@ -50,15 +45,15 @@ public class OfferItem {
             discountValue = discountValue.subtract(discount);
         }
 
-        this.totalCost = product.getPrice().multiply(new BigDecimal(quantity)).subtract(discountValue);
+        this.totalCost.setAmount(product.getPrice().multiply(new BigDecimal(quantity)).subtract(discountValue));
     }
 
     public BigDecimal getTotalCost() {
-        return totalCost;
+        return totalCost.getAmount();
     }
 
     public String getTotalCostCurrency() {
-        return currency;
+        return totalCost.getCurrency();
     }
 
     public BigDecimal getDiscount() {
@@ -139,12 +134,12 @@ public class OfferItem {
 
         BigDecimal max;
         BigDecimal min;
-        if (totalCost.compareTo(other.totalCost) > 0) {
-            max = totalCost;
-            min = other.totalCost;
+        if (totalCost.getAmount().compareTo(other.totalCost.getAmount()) > 0) {
+            max = totalCost.getAmount();
+            min = other.totalCost.getAmount();
         } else {
-            max = other.totalCost;
-            min = totalCost;
+            max = other.totalCost.getAmount();
+            min = totalCost.getAmount();
         }
 
         BigDecimal difference = max.subtract(min);
@@ -153,4 +148,7 @@ public class OfferItem {
         return acceptableDelta.compareTo(difference) > 0;
     }
 
+    public String getProductId() {
+        return product.getId();
+    }
 }

@@ -85,7 +85,6 @@ public class OfferItem {
         int result = 1;
         result = prime * result + (discount == null ? 0 : discount.hashCode());
         result = prime * result + quantity;
-        result = prime * result + (totalPrice.getAmount() == null ? 0 : totalPrice.getAmount().hashCode());
         return result;
     }
 
@@ -109,13 +108,6 @@ public class OfferItem {
             return false;
         }
         if (quantity != other.quantity) {
-            return false;
-        }
-        if (totalPrice.getAmount() == null) {
-            if (other.totalPrice.getAmount() != null) {
-                return false;
-            }
-        } else if (!totalPrice.getAmount().equals(other.totalPrice.getAmount())) {
             return false;
         }
         return true;

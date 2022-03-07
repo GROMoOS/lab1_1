@@ -61,4 +61,20 @@ public class Money {
 		result = prime * result + (currency == null ? 0 : currency.hashCode());
 		return result;
 	}
+
+	public boolean sameAs(Money other, double delta) {
+		if (amount == null) {
+			if (other.amount != null)
+				return false;
+		} else if (!amount.equals(other.amount))
+			return false;
+
+		if (currency == null) {
+			if (other.currency != null)
+				return false;
+		} else if (!currency.equals(other.currency))
+			return false;
+
+		return true;
+	}
 }

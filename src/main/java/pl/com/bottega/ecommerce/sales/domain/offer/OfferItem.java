@@ -45,12 +45,12 @@ public class OfferItem {
     }
 
     public OfferItem(String productId, BigDecimal productPrice, String productName, Date productSnapshotDate,
-            String productType, int quantity) {
+                     String productType, int quantity) {
         this(productId, productPrice, productName, productSnapshotDate, productType, quantity, null, null);
     }
 
     public OfferItem(String productId, BigDecimal productPrice, String productName, Date productSnapshotDate,
-            String productType, int quantity, BigDecimal discount, String discountCause) {
+                     String productType, int quantity, BigDecimal discount, String discountCause) {
         this.product.setProductId(productId);
         this.product.setProductPrice(productPrice);
         this.product.setProductName(productName);
@@ -133,7 +133,7 @@ public class OfferItem {
         } else if (!product.getProductId().equals(other.product.getProductId())) {
             return false;
         }
-        if (product.getProductType() != other.product.getProductType() ) {
+        if (product.getProductType() != other.product.getProductType()) {
             return false;
         }
         if (quantity != other.quantity) {
@@ -150,10 +150,8 @@ public class OfferItem {
     }
 
     /**
-     *
      * @param other
-     * @param delta
-     *            acceptable percentage difference
+     * @param delta acceptable percentage difference
      * @return
      */
     public boolean sameAs(OfferItem other, double delta) {

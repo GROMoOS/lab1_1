@@ -12,6 +12,10 @@ public class Product {
 
     private Date productSnapshotDate;
 
+    private String productType;
+
+    private Money price;
+
     public String getProductId() {
         return productId;
     }
@@ -59,8 +63,4 @@ public class Product {
     public void setPrice(Money price) {
         this.price = price;
     }
-
-    private String productType;
-
-    private Money price;
 }

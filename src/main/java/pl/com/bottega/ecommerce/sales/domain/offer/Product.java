@@ -83,19 +83,35 @@ public class Product {
 
 		Product other = (Product) obj;
 
-		if(!id.equals(other.id))
+
+		if ( id == null) {
+			if (other.id == null)
+				return false;
+		} else if(!id.equals(other.id))
 			return false;
 
-		if(!name.equals(other.name))
+		if ( name == null) {
+			if (other.name  == null)
+				return false;
+		} else if(!name.equals(other.name))
 			return false;
 
-		if(!type.equals(other.type))
+		if ( type == null) {
+			if (other.type == null)
+				return false;
+		} else if(!type.equals(other.type))
 			return false;
 
-		if(!snapshotDate.equals(other.snapshotDate))
+		if ( snapshotDate == null) {
+			if (other.snapshotDate == null)
+				return false;
+		} else if(!snapshotDate.equals(other.snapshotDate))
 			return false;
 
-		if(!money.equals(other.money))
+		if ( money == null) {
+			if (other.money == null)
+				return false;
+		} else if(!money.equals(other.money))
 			return false;
 
 		return true;

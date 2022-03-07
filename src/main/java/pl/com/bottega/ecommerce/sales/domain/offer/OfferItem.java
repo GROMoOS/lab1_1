@@ -13,21 +13,17 @@
 package pl.com.bottega.ecommerce.sales.domain.offer;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class OfferItem {
-
-    public Product getProduct() {
-        return product;
-    }
-
     // product
     private final Product product;
     private final Money totalCost;
 
     // discount
-    private String discountCause;
-    private BigDecimal discount;
-    private int quantity;
+    private final String discountCause;
+    private final BigDecimal discount;
+    private final int quantity;
 
     public OfferItem(Product product, int quantity, Money totalCost) {
         this(product, totalCost, quantity, null, null);
@@ -73,10 +69,7 @@ public class OfferItem {
         final int prime = 31;
         int result = 1;
         result = prime * result + (discount == null ? 0 : discount.hashCode());
-        result = prime * result + (product.getName() == null ? 0 : product.getName().hashCode());
-        result = prime * result + (product.getPrice() == null ? 0 : product.getPrice().hashCode());
-        result = prime * result + (product.getId() == null ? 0 : product.getId().hashCode());
-        result = prime * result + (product.getType() == null ? 0 : product.getType().hashCode());
+        result = prime * result + product.hashCode();
         result = prime * result + quantity;
         result = prime * result + (totalCost == null ? 0 : totalCost.hashCode());
         return result;
@@ -94,35 +87,17 @@ public class OfferItem {
             return false;
         }
         OfferItem other = (OfferItem) obj;
-        if (discount == null) {
-            if (other.discount != null) {
-                return false;
-            }
-        } else if (!discount.equals(other.discount)) {
-            return false;
-        }
-        if(!product.equals(other.product))
-            return false;
-
-        if (quantity != other.quantity) {
-            return false;
-        }
-        if (totalCost == null) {
-            if (other.totalCost != null) {
-                return false;
-            }
-        } else if (!totalCost.equals(other.totalCost)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(discount, other.discount) &&
+                Objects.equals(totalCost, other.totalCost) &&
+                product.equals(other.product) &&
+                quantity == other.quantity;
     }
 
     /**
      *
-     * @param other
-     * @param delta
-     *            acceptable percentage difference
-     * @return
+     * @param other another OfferItem to compare with
+     * @param delta acceptable percentage difference
+     * @return true if price difference is good enough
      */
     public boolean sameAs(OfferItem other, double delta) {
         if (!product.equals(other.product))

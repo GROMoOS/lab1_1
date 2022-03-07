@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 public class Money {
     private BigDecimal amount;
 
+    private String currency;
+
     public BigDecimal getAmount() {
         return amount;
     }
@@ -20,6 +22,4 @@ public class Money {
     public void setCurrency(String currency) {
         this.currency = currency;
     }
-
-    private String currency;
 }

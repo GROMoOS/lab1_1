@@ -64,6 +64,14 @@ public class OfferItem {
         return discountCause;
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
+    public Money getMoney() {
+        return money;
+    }
+
     public int getQuantity() {
         return quantity;
     }

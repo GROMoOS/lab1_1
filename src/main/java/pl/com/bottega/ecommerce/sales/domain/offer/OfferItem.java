@@ -93,10 +93,7 @@ public class OfferItem {
         final int prime = 31;
         int result = 1;
         result = prime * result + (discount == null ? 0 : discount.hashCode());
-        result = prime * result + (product.getName() == null ? 0 : product.getName().hashCode());
-        result = prime * result + (product.getMoney().getAmount() == null ? 0 : product.getMoney().getAmount().hashCode());
-        result = prime * result + (product.getId() == null ? 0 : product.getId().hashCode());
-        result = prime * result + (product.getType() == null ? 0 : product.getType().hashCode());
+        result = prime * result + (product == null ? 0 : product.hashCode());
         result = prime * result + quantity;
         result = prime * result + (totalCost == null ? 0 : totalCost.hashCode());
         return result;
@@ -121,28 +118,10 @@ public class OfferItem {
         } else if (!discount.equals(other.discount)) {
             return false;
         }
-        if (product.getName() == null) {
-            if (other.product.getName() != null) {
+        if (product == null) {
+            if (other.product != null)
                 return false;
-            }
-        } else if (!product.getName().equals(other.product.getName())) {
-            return false;
-        }
-        if (product.getMoney().getAmount() == null) {
-            if (other.product.getMoney().getAmount() != null) {
-                return false;
-            }
-        } else if (!product.getMoney().getAmount().equals(other.product.getMoney().getAmount())) {
-            return false;
-        }
-        if (product.getId() == null) {
-            if (other.product.getId() != null) {
-                return false;
-            }
-        } else if (!product.getId().equals(other.product.getId())) {
-            return false;
-        }
-        if (product.getType() != other.product.getType()) {
+        } else if (!product.equals(other.product)) {
             return false;
         }
         if (quantity != other.quantity) {

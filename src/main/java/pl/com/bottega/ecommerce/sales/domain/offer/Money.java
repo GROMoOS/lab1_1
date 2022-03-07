@@ -3,14 +3,18 @@ package pl.com.bottega.ecommerce.sales.domain.offer;
 import java.math.BigDecimal;
 
 public class Money {
-    
+
     private BigDecimal amount;
     private String currency;
-    
+
     public Money(BigDecimal amount, String currency) {
         this.amount = amount;
-        this.currency = currency;
+        if (currency == null) {
+            this.currency = "default value pepoG"; // TODO: fill default value with true value
+        } else
+            this.currency = currency;
     }
+
     public BigDecimal getAmount() {
         return amount;
     }
@@ -22,6 +26,7 @@ public class Money {
     public String getCurrency() {
         return currency;
     }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -30,6 +35,7 @@ public class Money {
         result = prime * result + ((currency == null) ? 0 : currency.hashCode());
         return result;
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -52,6 +58,4 @@ public class Money {
         return true;
     }
 
-
-    
 }

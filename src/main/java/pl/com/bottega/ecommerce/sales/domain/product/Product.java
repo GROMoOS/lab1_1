@@ -1,11 +1,9 @@
 package pl.com.bottega.ecommerce.sales.domain.product;
 
 import pl.com.bottega.ecommerce.sales.domain.money.Money;
-import pl.com.bottega.ecommerce.sales.domain.offer.OfferItem;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Objects;
 
 public class Product {
     private String id, name, type;

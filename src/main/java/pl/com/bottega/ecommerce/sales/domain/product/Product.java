@@ -1,9 +1,11 @@
 package pl.com.bottega.ecommerce.sales.domain.product;
 
 import pl.com.bottega.ecommerce.sales.domain.money.Money;
+import pl.com.bottega.ecommerce.sales.domain.offer.OfferItem;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Objects;
 
 public class Product {
     private String id, name, type;
@@ -24,6 +26,46 @@ public class Product {
         this.type = type;
         this.snapshotDate = snapshotDate;
         this.price = new Money(moneyAmount);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+
+        if (obj == null)
+            return false;
+
+        if (getClass() != obj.getClass())
+            return false;
+
+        Product other = (Product) obj;
+
+        if (getName() == null) {
+            if (other.getName() != null) {
+                return false;
+            }
+        } else if (!getName().equals(other.getName())) {
+            return false;
+        }
+        if (getPrice() == null) {
+            if (other.getPrice() != null) {
+                return false;
+            }
+        } else if (!getPrice().equals(other.getPrice())) {
+            return false;
+        }
+        if (getId() == null) {
+            if (other.getId() != null) {
+                return false;
+            }
+        } else if (!getId().equals(other.getId())) {
+            return false;
+        }
+        if (!getType().equals(other.getType())) {
+            return false;
+        }
+        return true;
     }
 
     public String getId() {

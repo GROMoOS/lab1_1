@@ -107,31 +107,11 @@ public class OfferItem {
         } else if (!discount.equals(other.discount)) {
             return false;
         }
-        if (product.getName() == null) {
-            if (other.product.getName() != null) {
+        if (product == null) {
+            if (other.product != null) {
                 return false;
             }
-        } else if (!product.getName().equals(other.product.getName())) {
-            return false;
-        }
-        if (product.getPrice() == null) {
-            if (other.product.getPrice() != null) {
-                return false;
-            }
-        } else if (!product.getPrice().equals(other.product.getPrice())) {
-            return false;
-        }
-        if (product.getId() == null) {
-            if (other.product.getId() != null) {
-                return false;
-            }
-        } else if (!product.getId().equals(other.product.getId())) {
-            return false;
-        }
-        if (product.getType() != other.product.getType()) {
-            return false;
-        }
-        if (quantity != other.quantity) {
+        } else if (!product.equals(other.product)) {
             return false;
         }
         if (totalPrice == null) {
@@ -152,31 +132,13 @@ public class OfferItem {
      * @return
      */
     public boolean sameAs(OfferItem other, double delta) {
-        if (product.getName() == null) {
-            if (other.product.getName() != null) {
+        if (product == null) {
+            if (other.product != null) {
                 return false;
             }
-        } else if (!product.getName().equals(other.product.getName())) {
+        } else if (!product.equals(other.product)) {
             return false;
         }
-        if (product.getPrice() == null) {
-            if (other.product.getPrice() != null) {
-                return false;
-            }
-        } else if (!product.getPrice().equals(other.product.getPrice())) {
-            return false;
-        }
-        if (product.getId() == null) {
-            if (other.product.getId() != null) {
-                return false;
-            }
-        } else if (!product.getId().equals(other.product.getId())) {
-            return false;
-        }
-        if (!product.getType().equals(other.product.getType())) {
-            return false;
-        }
-
         if (quantity != other.quantity) {
             return false;
         }

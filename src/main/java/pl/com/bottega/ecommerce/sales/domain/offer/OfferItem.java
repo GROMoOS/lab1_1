@@ -31,15 +31,13 @@ public class OfferItem {
 
     private BigDecimal discount;
 
-    public OfferItem(String productId, BigDecimal productPrice, String productName, Date productSnapshotDate,
-            String productType, int quantity) {
-        this(productId, productPrice, productName, productSnapshotDate, productType, quantity, null, null);
+    public OfferItem(Product product, int quantity) {
+        this(product, quantity, null, null);
     }
 
-    public OfferItem(String productId, BigDecimal productPrice, String productName, Date productSnapshotDate,
-            String productType, int quantity, BigDecimal discount, String discountCause) {
+    public OfferItem(Product product, int quantity, BigDecimal discount, String discountCause) {
 
-        this.product=new Product(product.getId(),product.getPrice(),product.getName(),productSnapshotDate,productType);
+        this.product=product;
 
         this.quantity = quantity;
         this.discount = discount;
@@ -83,12 +81,9 @@ public class OfferItem {
         final int prime = 31;
         int result = 1;
         result = prime * result + (discount == null ? 0 : discount.hashCode());
-        result = prime * result + (product.getName() == null ? 0 : product.getName().hashCode());
-        result = prime * result + (product.getPrice() == null ? 0 : product.getPrice().hashCode());
-        result = prime * result + (product.getId() == null ? 0 : product.getId().hashCode());
-        result = prime * result + (product.getType() == null ? 0 : product.getType().hashCode());
+        result = prime * result + product.hashCode();
         result = prime * result + quantity;
-        result = prime * result + (money.getAmount() == null ? 0 : money.getAmount().hashCode());
+        result = prime * result + (money == null ? 0 : money.hashCode());
         return result;
     }
 
@@ -111,38 +106,13 @@ public class OfferItem {
         } else if (!discount.equals(other.discount)) {
             return false;
         }
-        if (product.getName() == null) {
-            if (other.product.getName() != null) {
-                return false;
-            }
-        } else if (!product.getName().equals(other.product.getName())) {
-            return false;
-        }
-        if (product.getPrice() == null) {
-            if (other.product.getPrice() != null) {
-                return false;
-            }
-        } else if (!product.getPrice().equals(other.product.getPrice())) {
-            return false;
-        }
-        if (product.getId() == null) {
-            if (other.product.getId() != null) {
-                return false;
-            }
-        } else if (!product.getId().equals(other.product.getId())) {
-            return false;
-        }
-        if (product.getType() != other.product.getType()) {
+        if(!product.equals(other.product)){
             return false;
         }
         if (quantity != other.quantity) {
             return false;
         }
-        if (money.getAmount() == null) {
-            if (other.money.getAmount() != null) {
-                return false;
-            }
-        } else if (!money.getAmount().equals(other.money.getAmount())) {
+        if (!money.equals(other.money)) {
             return false;
         }
         return true;
@@ -156,28 +126,7 @@ public class OfferItem {
      * @return
      */
     public boolean sameAs(OfferItem other, double delta) {
-        if (product.getName() == null) {
-            if (other.product.getName() != null) {
-                return false;
-            }
-        } else if (!product.getName().equals(other.product.getName())) {
-            return false;
-        }
-        if (product.getPrice() == null) {
-            if (other.product.getPrice() != null) {
-                return false;
-            }
-        } else if (!product.getPrice().equals(other.product.getPrice())) {
-            return false;
-        }
-        if (product.getId() == null) {
-            if (other.product.getId() != null) {
-                return false;
-            }
-        } else if (!product.getId().equals(other.product.getId())) {
-            return false;
-        }
-        if (product.getType() != other.product.getType()) {
+        if(!product.equals(other.product)){
             return false;
         }
 

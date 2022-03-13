@@ -31,6 +31,20 @@ public class Money {
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Money m = (Money) obj;
+        if (!m.amount.equals(this.amount))
+            return false;
+        if (!m.currency.equals(this.currency))
+            return false;
+        return true;
     }
 }

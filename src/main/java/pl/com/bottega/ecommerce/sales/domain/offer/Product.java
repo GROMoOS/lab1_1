@@ -62,8 +62,43 @@ public class Product {
         this.type = type;
     }
 
+
+//    private String id;
+//
+//    private BigDecimal price;
+//
+//    private String name;
+//
+//    private Date snapshotDate;
+//
+//    private String type;
+
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Product p = (Product) obj;
+        if (!this.id.equals(p.id))
+            return false;
+
+        if (!this.price.equals(p.price))
+            return false;
+
+        if (!this.name.equals(p.name))
+            return false;
+
+        if (!this.snapshotDate.equals(p.snapshotDate))
+            return false;
+
+        if (!this.type.equals(p.type))
+            return false;
+        return true;
     }
 }

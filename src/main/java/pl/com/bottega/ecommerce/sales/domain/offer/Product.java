@@ -62,17 +62,6 @@ public class Product {
         this.type = type;
     }
 
-
-//    private String id;
-//
-//    private BigDecimal price;
-//
-//    private String name;
-//
-//    private Date snapshotDate;
-//
-//    private String type;
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

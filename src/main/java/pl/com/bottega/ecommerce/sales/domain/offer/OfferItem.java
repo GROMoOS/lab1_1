@@ -13,15 +13,13 @@
 package pl.com.bottega.ecommerce.sales.domain.offer;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 public class OfferItem {
 
     // product
     private Product product;
     private int quantity;
-    private BigDecimal totalCost;
-    private String currency;
+    private Money totalCost;
 
     // discount
     private String discountCause;
@@ -42,19 +40,17 @@ public class OfferItem {
             discountValue = discountValue.subtract(discount);
         }
 
-        this.totalCost = product.getPrice().multiply(new BigDecimal(quantity)).subtract(discountValue);
+        Money productCost = product.getPrice();
+        this.totalCost = new Money(productCost.getAmount().multiply(new BigDecimal(quantity)).subtract(discountValue),
+                productCost.getCurrency());
     }
 
     public Product getProduct() {
         return product;
     }
 
-    public BigDecimal getTotalCost() {
+    public Money getTotalCost() {
         return totalCost;
-    }
-
-    public String getTotalCostCurrency() {
-        return currency;
     }
 
     public BigDecimal getDiscount() {
@@ -133,12 +129,12 @@ public class OfferItem {
 
         BigDecimal max;
         BigDecimal min;
-        if (totalCost.compareTo(item.totalCost) > 0) {
-            max = totalCost;
-            min = item.totalCost;
+        if (totalCost.getAmount().compareTo(item.totalCost.getAmount()) > 0) {
+            max = totalCost.getAmount();
+            min = item.totalCost.getAmount();
         } else {
-            max = item.totalCost;
-            min = totalCost;
+            max = item.totalCost.getAmount();
+            min = totalCost.getAmount();
         }
 
         BigDecimal difference = max.subtract(min);

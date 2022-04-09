@@ -86,6 +86,13 @@ public class Product {
     }
 
     @Override public int hashCode() {
-        return Objects.hash(id, price, name, snapshotDate, type);
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + (id == null ? 0 : id.hashCode());
+        result = prime * result + (price == null ? 0 : price.hashCode());
+        result = prime * result + (name == null ? 0 : name.hashCode());
+        result = prime * result + (snapshotDate == null ? 0 : snapshotDate.hashCode());
+        result = prime * result + (type == null ? 0 : type.hashCode());
+        return result;
     }
 }
